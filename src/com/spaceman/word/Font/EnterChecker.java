@@ -2,22 +2,19 @@ package com.spaceman.word.Font;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.block.Block;
 
 import com.spaceman.word.Main;
 
-import net.minecraft.server.v1_11_R1.Material;
-
 public class EnterChecker {
-	
+
 	Main p;
-	
+
 	public EnterChecker(Main instance) {
 		p = instance;
 	}
-	
+
 	@SuppressWarnings("deprecation")
-	public void Tile() {
+	public void Cursor() {
 		Location l = (Location) p.getConfig().get("word.offset");
 
 		Location L1 = new Location(l.getWorld(), l.getX(), l.getY() - 7, l.getZ() + 1);
@@ -33,45 +30,45 @@ public class EnterChecker {
 		for (int xx = minX; xx <= maxX; xx++) {
 			for (int yy = minY; yy <= maxY; yy++) {
 				for (int zz = minZ; zz <= maxZ; zz++) {
-					Bukkit.getServer().getWorld(l.getWorld().getName()).getBlockAt(new Location(l.getWorld(), xx, yy, zz)).setType(p.getConfig().getItemStack("word.paper").getType());
-					Bukkit.getServer().getWorld(l.getWorld().getName()).getBlockAt(new Location(l.getWorld(), xx, yy, zz)).setData((byte) p.getConfig().getInt("word.block.damage"));
+					Bukkit.getServer().getWorld(l.getWorld().getName())
+							.getBlockAt(new Location(l.getWorld(), xx, yy, zz))
+							.setType(p.getConfig().getItemStack("word.paper").getType());
+					Bukkit.getServer().getWorld(l.getWorld().getName())
+							.getBlockAt(new Location(l.getWorld(), xx, yy, zz))
+							.setData((byte) p.getConfig().getInt("word.block.damage"));
 				}
 			}
 		}
 	}
 
 	public void Enter(String s) {
-		
-		Location l = (Location) p.getConfig().get("word.offset");
-		
-		if (s.equals("i") || s.equals(".") || s.equals(",") || s.equals("|") || s.equals(":") || s.equals(";") || s.equals("!")) {
-			
-			l.setZ(l.getZ() + 2);
-			
+
+		if (s.equals("i") || s.equals(".") || s.equals(",") || s.equals("|") || s.equals(":") || s.equals(";")
+				|| s.equals("!")) {
+
+			long i = p.getConfig().getLong("word.enterChecker") + 2;
+			p.getConfig().set("word.enterChecker", i);
+
 		} else if (s.equals("`") || s.equals("'") || s.equals("l")) {
-			
-			l.setZ(l.getZ() + 3);
-		
+
+			long i = p.getConfig().getLong("word.enterChecker") + 3;
+			p.getConfig().set("word.enterChecker", i);
+
 		} else if (s.equals("I") || s.equals("t") || s.equals("[") || s.equals("]")) {
 
-			l.setZ(l.getZ() + 4);
-			
-		} else if (s.equals("f") || s.equals("t") || s.equals("{") || s.equals("}") || s.equals("(") || s.equals(")") || s.equals("<") || s.equals(">")) {
+			long i = p.getConfig().getLong("word.enterChecker") + 4;
+			p.getConfig().set("word.enterChecker", i);
 
-			l.setZ(l.getZ() + 5);
-			
-		}
-		
-		Block block = Bukkit.getWorld(l.getWorld().getName()).getBlockAt(l);
-		if (block.getType().equals(Material.AIR)) {
-			
-			Tile();
+		} else if (s.equals("f") || s.equals("t") || s.equals("{") || s.equals("}") || s.equals("(") || s.equals(")")
+				|| s.equals("<") || s.equals(">")) {
 
-			Location l1 = (Location) p.getConfig().get("word.offset");
-			Location l2 = (Location) p.getConfig().get("word.location");
-			Location newl = new Location(l1.getWorld(), l1.getX(), l1.getY() - 9, l2.getZ());
-			p.getConfig().set("word.offset", newl);
-			p.saveConfig();
+			long i = p.getConfig().getLong("word.enterChecker") + 5;
+			p.getConfig().set("word.enterChecker", i);
+
+		} else {
+			long i = p.getConfig().getLong("word.enterChecker") + 6;
+			p.getConfig().set("word.enterChecker", i);
 		}
+		p.saveConfig();
 	}
 }

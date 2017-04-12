@@ -17,6 +17,34 @@ import com.spaceman.word.commands.Print;
 
 public class Main extends JavaPlugin {
 
+	@SuppressWarnings("deprecation")
+	public void Cursor() {
+		Location l = (Location) getConfig().get("word.offset");
+
+		Location L1 = new Location(l.getWorld(), l.getX(), l.getY() - 7, l.getZ() + 1);
+		Location L2 = new Location(l.getWorld(), l.getX(), l.getY() - 7, l.getZ() + 5);
+
+		int minX = Math.min(L1.getBlockX(), L2.getBlockX());
+		int minY = Math.min(L1.getBlockY(), L2.getBlockY());
+		int minZ = Math.min(L1.getBlockZ(), L2.getBlockZ());
+		int maxX = Math.max(L1.getBlockX(), L2.getBlockX());
+		int maxY = Math.max(L1.getBlockY(), L2.getBlockY());
+		int maxZ = Math.max(L1.getBlockZ(), L2.getBlockZ());
+
+		for (int xx = minX; xx <= maxX; xx++) {
+			for (int yy = minY; yy <= maxY; yy++) {
+				for (int zz = minZ; zz <= maxZ; zz++) {
+					Bukkit.getServer().getWorld(l.getWorld().getName())
+							.getBlockAt(new Location(l.getWorld(), xx, yy, zz))
+							.setType(getConfig().getItemStack("word.paper").getType());
+					Bukkit.getServer().getWorld(l.getWorld().getName())
+							.getBlockAt(new Location(l.getWorld(), xx, yy, zz))
+							.setData((byte) getConfig().getInt("word.block.damage"));
+				}
+			}
+		}
+	}
+
 	public void onEnable() {
 
 		getCommand("print").setExecutor(new Print(this));
@@ -45,23 +73,37 @@ public class Main extends JavaPlugin {
 					int maxX = Math.max(L1.getBlockX(), L2.getBlockX());
 					int maxY = Math.max(L1.getBlockY(), L2.getBlockY());
 					int maxZ = Math.max(L1.getBlockZ(), L2.getBlockZ());
-
+//					int i = 0;
 					for (int xx = minX; xx <= maxX; xx++) {
 						for (int yy = minY; yy <= maxY; yy++) {
 							for (int zz = minZ; zz <= maxZ; zz++) {
-								Block block = Bukkit.getServer().getWorld(l.getWorld().getName()).getBlockAt(new Location(l.getWorld(), xx, yy, zz));
-								if (block.getType() == m) {
+								Block block = Bukkit.getServer().getWorld(l.getWorld().getName())
+										.getBlockAt(new Location(l.getWorld(), xx, yy, zz));
+								Block block1 = Bukkit.getServer().getWorld(l.getWorld().getName())
+										.getBlockAt(new Location(l.getWorld(), xx, yy, zz + 1));
+								if (block1.getType().equals(Material.AIR)) {
+//									i++;
+								} 
+								else if (block.getType() == m) {
 									block.setType(getConfig().getItemStack("word.paper").getType());
 									block.setData((byte) getConfig().getInt("word.block.damage"));
 								} else {
 									block.setType(m);
 								}
+//								if (i == 5) {
+//
+//									Location l1 = (Location) getConfig().get("word.offset");
+//									Location l2 = (Location) getConfig().get("word.location");
+//									Location newl = new Location(l1.getWorld(), l1.getX(), l1.getY() - 9, l2.getZ());
+//									getConfig().set("word.offset", newl);
+//									saveConfig();
+//								}
 							}
 						}
 					}
 				}
 			}
 		}, 6, 6);
-		
+
 	}
 }
