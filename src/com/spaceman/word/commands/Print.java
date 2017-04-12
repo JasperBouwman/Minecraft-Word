@@ -2,8 +2,6 @@ package com.spaceman.word.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -39,16 +37,12 @@ public class Print implements CommandExecutor {
 		for (int xx = minX; xx <= maxX; xx++) {
 			for (int yy = minY; yy <= maxY; yy++) {
 				for (int zz = minZ; zz <= maxZ; zz++) {
-
-					Block block = Bukkit.getServer().getWorld(l.getWorld().getName())
-							.getBlockAt(new Location(l.getWorld(), xx, yy, zz));
-					if (block.getType().equals(Material.AIR)) {
-						
-					} else {
-
-						block.setType(p.getConfig().getItemStack("word.paper").getType());
-						block.setData((byte) p.getConfig().getInt("word.block.damage"));
-					}
+					Bukkit.getServer().getWorld(l.getWorld().getName())
+							.getBlockAt(new Location(l.getWorld(), xx, yy, zz))
+							.setType(p.getConfig().getItemStack("word.paper").getType());
+					Bukkit.getServer().getWorld(l.getWorld().getName())
+							.getBlockAt(new Location(l.getWorld(), xx, yy, zz))
+							.setData((byte) p.getConfig().getInt("word.block.damage"));
 				}
 			}
 		}
@@ -77,8 +71,6 @@ public class Print implements CommandExecutor {
 
 				char[] charArray = args[i].toCharArray();
 
-				p.getConfig().set("word.enterChecker", 0);
-
 				for (char ch : charArray) {
 					StringBuilder str = new StringBuilder();
 					str.append(ch);
@@ -88,30 +80,7 @@ public class Print implements CommandExecutor {
 					ec.Enter(s);
 
 				}
-				Location l4 = (Location) p.getConfig().get("word.offset");
 
-				Block block = Bukkit.getWorld(l4.getWorld().getName()).getBlockAt(new Location(l4.getWorld(), l4.getX(),
-						l4.getY(), (l4.getZ() + p.getConfig().getLong("word.enterChecker"))));
-				if (block.getType() != (p.getConfig().getItemStack("word.paper").getType())) {
-					
-//					Location loc = (Location) p.getConfig().get("word.offset");
-//					Location loc2 = (Location) p.getConfig().get("word.location");
-//					if (loc.getZ() == loc2.getZ()) {
-//						
-//						player.sendMessage("word is to long to place");
-//						return false;
-//						
-//					}
-
-					Cursor();
-
-					Location l1 = (Location) p.getConfig().get("word.offset");
-					Location l2 = (Location) p.getConfig().get("word.location");
-					Location newl2 = new Location(l1.getWorld(), l1.getX(), l1.getY() - 9, l2.getZ());
-					p.getConfig().set("word.offset", newl2);
-					p.saveConfig();
-				}
-				
 				for (char ch : charArray) {
 					StringBuilder str = new StringBuilder();
 					str.append(ch);
