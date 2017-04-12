@@ -1,0 +1,20 @@
+main: com.spaceman.word.Main
+name: Minecraft Word
+version: 1.11.2
+author: The_Spaceman
+
+commands:
+  back:
+    description: backspace
+  edit:
+    description: edit the "color" using block materials
+  enter:
+    description: enter
+  new:
+    description: new file
+  print:
+    description: type some letters and words
+  delete:
+    description: removes the file
+  cls:
+    description: cleared the file
