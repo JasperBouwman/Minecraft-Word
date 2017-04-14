@@ -1,4 +1,4 @@
-package com.spaceman.word.Font;
+package com.spaceman.word.font;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

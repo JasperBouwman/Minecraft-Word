@@ -1,5 +1,6 @@
 package com.spaceman.word.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -7,9 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.spaceman.word.Main;
-import com.spaceman.word.Font.CursorRemove;
-import com.spaceman.word.Font.EnterChecker;
-import com.spaceman.word.Font.FontCreator;
+import com.spaceman.word.font.CursorRemove;
+import com.spaceman.word.font.EnterChecker;
+import com.spaceman.word.font.FontCreator;
 
 public class Print implements CommandExecutor {
 	// Bukkit.getServer().getWorld(l.getWorld().getName()).getBlockAt(l.getBlockX(),l.getBlockY()
@@ -26,6 +27,7 @@ public class Print implements CommandExecutor {
 			return false;
 		}
 		Player player = (Player) sender;
+		p.getConfig().set("word.end", "false");
 		if (p.getConfig().contains("word.offset")) {
 			if (args.length == 0) {
 
@@ -34,6 +36,26 @@ public class Print implements CommandExecutor {
 
 				Location l = (Location) p.getConfig().get("word.offset");
 				Location newl = new Location(l.getWorld(), l.getX(), l.getY(), l.getZ() + 2);
+				
+				if (!Bukkit.getServer().getWorld(newl.getWorld().getName()).getBlockAt(newl).getType().equals(p.getConfig().getItemStack("word.paper").getType())) {
+					
+					Location l1 = (Location) p.getConfig().get("word.offset");
+					Location l2 = (Location) p.getConfig().get("word.location");
+					Location newl1 = new Location(l1.getWorld(), l1.getX(), l1.getY() - 9, l2.getZ());
+
+					if (Bukkit.getWorld(newl1.getWorld().getName())
+							.getBlockAt(newl1.getBlockX(), newl1.getBlockY() - 8, newl1.getBlockZ()).getType()
+							.equals(p.getConfig().getItemStack("word.paper").getType())) {
+
+						p.getConfig().set("word.offset", newl1);
+						p.saveConfig();
+						player.sendMessage("enter created");
+					} else {
+						player.sendMessage("end of file");
+					}
+					return false;
+				}
+				
 				p.getConfig().set("word.offset", newl);
 				p.saveConfig();
 				player.sendMessage("space created");
@@ -53,7 +75,7 @@ public class Print implements CommandExecutor {
 					String s = str.toString();
 
 					EnterChecker ec = new EnterChecker(p);
-					ec.Enter(s);
+					ec.EnterWord(s, player);
 
 				}
 
@@ -78,6 +100,11 @@ public class Print implements CommandExecutor {
 			Location newl = new Location(l.getWorld(), l.getX(), l.getY(), l.getZ() - 2);
 			p.getConfig().set("word.offset", newl);
 			p.saveConfig();
+			
+			if (p.getConfig().getString("word.end").equals("true")) {
+				player.sendMessage("letters didn't fit on the file");
+			}
+			
 		}
 		return false;
 	}

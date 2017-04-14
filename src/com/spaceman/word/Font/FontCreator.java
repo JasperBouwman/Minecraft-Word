@@ -1,59 +1,101 @@
-package com.spaceman.word.Font;
+package com.spaceman.word.font;
 
 import com.spaceman.word.Main;
-import com.spaceman.word.Font.Capitals.A;
-import com.spaceman.word.Font.Capitals.B;
-import com.spaceman.word.Font.Capitals.C;
-import com.spaceman.word.Font.Capitals.D;
-import com.spaceman.word.Font.Capitals.E;
-import com.spaceman.word.Font.Capitals.F;
-import com.spaceman.word.Font.Capitals.G;
-import com.spaceman.word.Font.Capitals.H;
-import com.spaceman.word.Font.Capitals.I;
-import com.spaceman.word.Font.Capitals.J;
-import com.spaceman.word.Font.Capitals.K;
-import com.spaceman.word.Font.Capitals.L;
-import com.spaceman.word.Font.Capitals.M;
-import com.spaceman.word.Font.Capitals.N;
-import com.spaceman.word.Font.Capitals.O;
-import com.spaceman.word.Font.Capitals.P;
-import com.spaceman.word.Font.Capitals.Q;
-import com.spaceman.word.Font.Capitals.R;
-import com.spaceman.word.Font.Capitals.S;
-import com.spaceman.word.Font.Capitals.T;
-import com.spaceman.word.Font.Capitals.U;
-import com.spaceman.word.Font.Capitals.V;
-import com.spaceman.word.Font.Capitals.W;
-import com.spaceman.word.Font.Capitals.X;
-import com.spaceman.word.Font.Capitals.Y;
-import com.spaceman.word.Font.Capitals.Z;
-import com.spaceman.word.Font.Other.N1;
-import com.spaceman.word.Font.Small.a;
-import com.spaceman.word.Font.Small.b;
-import com.spaceman.word.Font.Small.c;
-import com.spaceman.word.Font.Small.d;
-import com.spaceman.word.Font.Small.e;
-import com.spaceman.word.Font.Small.f;
-import com.spaceman.word.Font.Small.g;
-import com.spaceman.word.Font.Small.h;
-import com.spaceman.word.Font.Small.i;
-import com.spaceman.word.Font.Small.j;
-import com.spaceman.word.Font.Small.k;
-import com.spaceman.word.Font.Small.l;
-import com.spaceman.word.Font.Small.m;
-import com.spaceman.word.Font.Small.n;
-import com.spaceman.word.Font.Small.o;
-import com.spaceman.word.Font.Small.p;
-import com.spaceman.word.Font.Small.q;
-import com.spaceman.word.Font.Small.r;
-import com.spaceman.word.Font.Small.s;
-import com.spaceman.word.Font.Small.t;
-import com.spaceman.word.Font.Small.u;
-import com.spaceman.word.Font.Small.v;
-import com.spaceman.word.Font.Small.w;
-import com.spaceman.word.Font.Small.x;
-import com.spaceman.word.Font.Small.y;
-import com.spaceman.word.Font.Small.z;
+import com.spaceman.word.font.capitals.A;
+import com.spaceman.word.font.capitals.B;
+import com.spaceman.word.font.capitals.C;
+import com.spaceman.word.font.capitals.D;
+import com.spaceman.word.font.capitals.E;
+import com.spaceman.word.font.capitals.F;
+import com.spaceman.word.font.capitals.G;
+import com.spaceman.word.font.capitals.H;
+import com.spaceman.word.font.capitals.I;
+import com.spaceman.word.font.capitals.J;
+import com.spaceman.word.font.capitals.K;
+import com.spaceman.word.font.capitals.L;
+import com.spaceman.word.font.capitals.M;
+import com.spaceman.word.font.capitals.N;
+import com.spaceman.word.font.capitals.O;
+import com.spaceman.word.font.capitals.P;
+import com.spaceman.word.font.capitals.Q;
+import com.spaceman.word.font.capitals.R;
+import com.spaceman.word.font.capitals.S;
+import com.spaceman.word.font.capitals.T;
+import com.spaceman.word.font.capitals.U;
+import com.spaceman.word.font.capitals.V;
+import com.spaceman.word.font.capitals.W;
+import com.spaceman.word.font.capitals.X;
+import com.spaceman.word.font.capitals.Y;
+import com.spaceman.word.font.capitals.Z;
+import com.spaceman.word.font.numbers.N0;
+import com.spaceman.word.font.numbers.N1;
+import com.spaceman.word.font.numbers.N2;
+import com.spaceman.word.font.numbers.N3;
+import com.spaceman.word.font.numbers.N4;
+import com.spaceman.word.font.numbers.N5;
+import com.spaceman.word.font.numbers.N6;
+import com.spaceman.word.font.numbers.N7;
+import com.spaceman.word.font.numbers.N8;
+import com.spaceman.word.font.numbers.N9;
+import com.spaceman.word.font.other.E01;
+import com.spaceman.word.font.other.E02;
+import com.spaceman.word.font.other.E03;
+import com.spaceman.word.font.other.E04;
+import com.spaceman.word.font.other.E05;
+import com.spaceman.word.font.other.E06;
+import com.spaceman.word.font.other.E07;
+import com.spaceman.word.font.other.E08;
+import com.spaceman.word.font.other.E09;
+import com.spaceman.word.font.other.E10;
+import com.spaceman.word.font.other.E11;
+import com.spaceman.word.font.other.E12;
+import com.spaceman.word.font.other.E13;
+import com.spaceman.word.font.other.E14;
+import com.spaceman.word.font.other.E15;
+import com.spaceman.word.font.other.E16;
+import com.spaceman.word.font.other.E17;
+import com.spaceman.word.font.other.E18;
+import com.spaceman.word.font.other.E19;
+import com.spaceman.word.font.other.E20;
+import com.spaceman.word.font.other.E21;
+import com.spaceman.word.font.other.E22;
+import com.spaceman.word.font.other.E23;
+import com.spaceman.word.font.other.E24;
+import com.spaceman.word.font.other.E25;
+import com.spaceman.word.font.other.E26;
+import com.spaceman.word.font.other.E27;
+import com.spaceman.word.font.other.E28;
+import com.spaceman.word.font.other.E29;
+import com.spaceman.word.font.other.E30;
+import com.spaceman.word.font.other.E31;
+import com.spaceman.word.font.other.E32;
+import com.spaceman.word.font.other.Unsupported;
+import com.spaceman.word.font.small.a;
+import com.spaceman.word.font.small.b;
+import com.spaceman.word.font.small.c;
+import com.spaceman.word.font.small.d;
+import com.spaceman.word.font.small.e;
+import com.spaceman.word.font.small.f;
+import com.spaceman.word.font.small.g;
+import com.spaceman.word.font.small.h;
+import com.spaceman.word.font.small.i;
+import com.spaceman.word.font.small.j;
+import com.spaceman.word.font.small.k;
+import com.spaceman.word.font.small.l;
+import com.spaceman.word.font.small.m;
+import com.spaceman.word.font.small.n;
+import com.spaceman.word.font.small.o;
+import com.spaceman.word.font.small.p;
+import com.spaceman.word.font.small.q;
+import com.spaceman.word.font.small.r;
+import com.spaceman.word.font.small.s;
+import com.spaceman.word.font.small.t;
+import com.spaceman.word.font.small.u;
+import com.spaceman.word.font.small.v;
+import com.spaceman.word.font.small.w;
+import com.spaceman.word.font.small.x;
+import com.spaceman.word.font.small.y;
+import com.spaceman.word.font.small.z;
 
 public class FontCreator {
 
@@ -225,44 +267,131 @@ public class FontCreator {
 			N1 font = new N1(p);
 			font.Font();
 		} else if (s.equals("2")) {
+			N2 font = new N2(p);
+			font.Font();
 		} else if (s.equals("3")) {
+			N3 font = new N3(p);
+			font.Font();
 		} else if (s.equals("4")) {
+			N4 font = new N4(p);
+			font.Font();
 		} else if (s.equals("5")) {
+			N5 font = new N5(p);
+			font.Font();
 		} else if (s.equals("6")) {
+			N6 font = new N6(p);
+			font.Font();
 		} else if (s.equals("7")) {
+			N7 font = new N7(p);
+			font.Font();
 		} else if (s.equals("8")) {
+			N8 font = new N8(p);
+			font.Font();
 		} else if (s.equals("9")) {
+			N9 font = new N9(p);
+			font.Font();
 		} else if (s.equals("0")) {
+			N0 font = new N0(p);
+			font.Font();
+		} else if (s.equals(",")) {
+			E01 font = new E01(p);
+			font.Font();
 		} else if (s.equals("<")) {
+			E02 font = new E02(p);
+			font.Font();
 		} else if (s.equals(".")) {
+			E03 font = new E03(p);
+			font.Font();
 		} else if (s.equals(">")) {
+			E04 font = new E04(p);
+			font.Font();
 		} else if (s.equals("/")) {
+			E05 font = new E05(p);
+			font.Font();
 		} else if (s.equals("?")) {
+			E06 font = new E06(p);
+			font.Font();
 		} else if (s.equals(";")) {
+			E07 font = new E07(p);
+			font.Font();
 		} else if (s.equals(":")) {
+			E08 font = new E08(p);
+			font.Font();
 		} else if (s.equals("'")) {
+			E09 font = new E09(p);
+			font.Font();
 		} else if (s.equals("\"")) {
+			E10 font = new E10(p);
+			font.Font();
 		} else if (s.equals("{")) {
+			E11 font = new E11(p);
+			font.Font();
 		} else if (s.equals("[")) {
+			E12 font = new E12(p);
+			font.Font();
 		} else if (s.equals("}")) {
+			E13 font = new E13(p);
+			font.Font();
 		} else if (s.equals("]")) {
+			E14 font = new E14(p);
+			font.Font();
 		} else if (s.equals("|")) {
+			E15 font = new E15(p);
+			font.Font();
 		} else if (s.equals("\\")) {
+			E16 font = new E16(p);
+			font.Font();
 		} else if (s.equals("`")) {
+			E17 font = new E17(p);
+			font.Font();
 		} else if (s.equals("~")) {
+			E18 font = new E18(p);
+			font.Font();
 		} else if (s.equals("!")) {
+			E19 font = new E19(p);
+			font.Font();
 		} else if (s.equals("@")) {
-		} else if (s.equals("#")) {
+			E20 font = new E20(p);
+			font.Font();
 		} else if (s.equals("$")) {
+			E21 font = new E21(p);
+			font.Font();
+		} else if (s.equals("%")) {
+			E22 font = new E22(p);
+			font.Font();
 		} else if (s.equals("^")) {
+			E23 font = new E23(p);
+			font.Font();
 		} else if (s.equals("&")) {
+			E24 font = new E24(p);
+			font.Font();
 		} else if (s.equals("*")) {
+			E25 font = new E25(p);
+			font.Font();
 		} else if (s.equals("(")) {
+			E26 font = new E26(p);
+			font.Font();
 		} else if (s.equals(")")) {
+			E27 font = new E27(p);
+			font.Font();
 		} else if (s.equals("_")) {
+			E28 font = new E28(p);
+			font.Font();
 		} else if (s.equals("-")) {
+			E29 font = new E29(p);
+			font.Font();
 		} else if (s.equals("=")) {
+			E30 font = new E30(p);
+			font.Font();
 		} else if (s.equals("+")) {
+			E31 font = new E31(p);
+			font.Font();
+		} else if (s.equals("#")) {
+			E32 font = new E32(p);
+			font.Font();
+		} else {
+			Unsupported font = new Unsupported(p);
+			font.Font();
 		}
 	}
 

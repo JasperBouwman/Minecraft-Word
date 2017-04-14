@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.spaceman.word.Main;
-import com.spaceman.word.Font.CursorRemove;
+import com.spaceman.word.font.CursorRemove;
 
 public class Back implements CommandExecutor {
 
@@ -35,8 +35,10 @@ public class Back implements CommandExecutor {
 				player.sendMessage("back time must be an number");
 				return false;
 			}
-
 		}
+
+		boolean letter = false, space = false;
+
 		for (int i4 = 0; i4 <= intloop; i4++) {
 			if (p.getConfig().contains("word.offset")) {
 
@@ -76,6 +78,12 @@ public class Back implements CommandExecutor {
 
 									if (Bukkit.getWorld(l.getWorld().getName()).getBlockAt(Lenter).getType()
 											.equals(Material.AIR)) {
+										if (letter) {
+											player.sendMessage("letter(s) was removed");
+										}
+										if (space) {
+											player.sendMessage("space(s) was removed");
+										}
 										player.sendMessage("end of file, couldn't backspace");
 										return false;
 									}
@@ -91,7 +99,8 @@ public class Back implements CommandExecutor {
 										boolean bool = true;
 
 										Location L13 = Lenter;
-										Location L23 = new Location(l.getWorld(), Lenter.getX(), Lenter.getY() - 8, Lenter.getZ() - i3);
+										Location L23 = new Location(l.getWorld(), Lenter.getX(), Lenter.getY() - 8,
+												Lenter.getZ() - i3);
 
 										int minX3 = Math.min(L13.getBlockX(), L23.getBlockX());
 										int minY3 = Math.min(L13.getBlockY(), L23.getBlockY());
@@ -138,7 +147,6 @@ public class Back implements CommandExecutor {
 											player.sendMessage("enter removed");
 										}
 									}
-
 									return false;
 								}
 							}
@@ -153,7 +161,7 @@ public class Back implements CommandExecutor {
 					Location newl = new Location(l.getWorld(), l.getX(), l.getY(), l.getZ() - 2);
 					p.getConfig().set("word.offset", newl);
 					p.saveConfig();
-					player.sendMessage("space removed");
+					space = true;
 
 				} else {
 					// Cursor();
@@ -211,7 +219,7 @@ public class Back implements CommandExecutor {
 									for (int zz2 = minZ2; zz2 <= maxZ2; zz2++) {
 										Block block = Bukkit.getServer().getWorld(l.getWorld().getName())
 												.getBlockAt(new Location(l.getWorld(), xx2, yy2, zz2));
-										
+
 										block.setType(p.getConfig().getItemStack("word.paper").getType());
 										block.setData((byte) p.getConfig().getInt("word.block.damage"));
 									}
@@ -221,12 +229,20 @@ public class Back implements CommandExecutor {
 							Location newl = new Location(ln.getWorld(), ln.getX(), ln.getY(), ln.getZ() - i);
 							p.getConfig().set("word.offset", newl);
 							p.saveConfig();
-							player.sendMessage("letter removed");
+							letter = true;
 						}
 					}
 				}
 			}
 		}
+
+		if (letter) {
+			player.sendMessage("letter(s) was removed");
+		}
+		if (space) {
+			player.sendMessage("space(s) was removed");
+		}
+
 		return false;
 	}
 }
