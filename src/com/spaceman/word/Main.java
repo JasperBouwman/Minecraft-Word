@@ -49,19 +49,26 @@ public class Main extends JavaPlugin {
 					for (int xx = minX; xx <= maxX; xx++) {
 						for (int yy = minY; yy <= maxY; yy++) {
 							for (int zz = minZ; zz <= maxZ; zz++) {
-								Block block = Bukkit.getServer().getWorld(l.getWorld().getName()).getBlockAt(new Location(l.getWorld(), xx, yy, zz));
-								if (block.getType() == m) {
-									block.setType(getConfig().getItemStack("word.paper").getType());
-									block.setData((byte) getConfig().getInt("word.block.damage"));
-								} else {
-									block.setType(m);
+								Block block = Bukkit.getServer().getWorld(l.getWorld().getName())
+										.getBlockAt(new Location(l.getWorld(), xx, yy, zz));
+								Block block1 = Bukkit.getServer().getWorld(l.getWorld().getName())
+										.getBlockAt(new Location(l.getWorld(), xx, yy, zz + 1));
+								if (block1.getType().equals(getConfig().getItemStack("word.paper").getType()) || block1
+										.getType().equals(getConfig().getItemStack("word.material").getType())) {
+									if (block.getType() == m) {
+										block.setType(getConfig().getItemStack("word.paper").getType());
+										block.setData((byte) getConfig().getInt("word.block.damage"));
+									} else {
+										block.setType(m);
+									}
 								}
+
 							}
 						}
 					}
 				}
 			}
 		}, 6, 6);
-		
+
 	}
 }

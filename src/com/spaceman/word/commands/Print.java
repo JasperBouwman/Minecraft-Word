@@ -1,6 +1,5 @@
 package com.spaceman.word.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.spaceman.word.Main;
+import com.spaceman.word.Font.CursorRemove;
 import com.spaceman.word.Font.EnterChecker;
 import com.spaceman.word.Font.FontCreator;
 
@@ -20,34 +20,6 @@ public class Print implements CommandExecutor {
 		p = instance;
 	}
 
-	@SuppressWarnings("deprecation")
-	public void Cursor() {
-		Location l = (Location) p.getConfig().get("word.offset");
-
-		Location L1 = new Location(l.getWorld(), l.getX(), l.getY() - 7, l.getZ() + 1);
-		Location L2 = new Location(l.getWorld(), l.getX(), l.getY() - 7, l.getZ() + 5);
-
-		int minX = Math.min(L1.getBlockX(), L2.getBlockX());
-		int minY = Math.min(L1.getBlockY(), L2.getBlockY());
-		int minZ = Math.min(L1.getBlockZ(), L2.getBlockZ());
-		int maxX = Math.max(L1.getBlockX(), L2.getBlockX());
-		int maxY = Math.max(L1.getBlockY(), L2.getBlockY());
-		int maxZ = Math.max(L1.getBlockZ(), L2.getBlockZ());
-
-		for (int xx = minX; xx <= maxX; xx++) {
-			for (int yy = minY; yy <= maxY; yy++) {
-				for (int zz = minZ; zz <= maxZ; zz++) {
-					Bukkit.getServer().getWorld(l.getWorld().getName())
-							.getBlockAt(new Location(l.getWorld(), xx, yy, zz))
-							.setType(p.getConfig().getItemStack("word.paper").getType());
-					Bukkit.getServer().getWorld(l.getWorld().getName())
-							.getBlockAt(new Location(l.getWorld(), xx, yy, zz))
-							.setData((byte) p.getConfig().getInt("word.block.damage"));
-				}
-			}
-		}
-	}
-
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		if (!(sender instanceof Player)) {
@@ -56,7 +28,10 @@ public class Print implements CommandExecutor {
 		Player player = (Player) sender;
 		if (p.getConfig().contains("word.offset")) {
 			if (args.length == 0) {
-				Cursor();
+
+				CursorRemove CR = new CursorRemove(p);
+				CR.Cursor();
+
 				Location l = (Location) p.getConfig().get("word.offset");
 				Location newl = new Location(l.getWorld(), l.getX(), l.getY(), l.getZ() + 2);
 				p.getConfig().set("word.offset", newl);
@@ -65,8 +40,9 @@ public class Print implements CommandExecutor {
 				return false;
 			}
 			String ss = "";
-			for (int i = 0; i <= (args.length - 1); i++) {
 
+			for (int i = 0; i <= (args.length - 1); i++) {
+				p.getConfig().set("word.enterChecker", 0);
 				ss = ss + args[i] + " ";
 
 				char[] charArray = args[i].toCharArray();
@@ -87,7 +63,9 @@ public class Print implements CommandExecutor {
 					String s = str.toString();
 					FontCreator fc = new FontCreator(p);
 
-					Cursor();
+					CursorRemove CR = new CursorRemove(p);
+					CR.Cursor();
+
 					fc.Font(s);
 				}
 				Location l = (Location) p.getConfig().get("word.offset");
