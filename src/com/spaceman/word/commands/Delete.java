@@ -41,7 +41,6 @@ public class Delete implements CommandExecutor {
 					for (int zz = minZ; zz <= maxZ; zz++) {
 						Block block = Bukkit.getServer().getWorld(l.getWorld().getName())
 								.getBlockAt(new Location(l.getWorld(), xx, yy, zz));
-						// block.setType(Material.REDSTONE_BLOCK);
 						block.setType(Material.AIR);
 					}
 				}
