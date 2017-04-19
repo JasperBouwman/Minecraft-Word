@@ -12,12 +12,16 @@ import com.spaceman.word.commands.Cls;
 import com.spaceman.word.commands.Delete;
 import com.spaceman.word.commands.Edit;
 import com.spaceman.word.commands.Enter;
+import com.spaceman.word.commands.Font;
 import com.spaceman.word.commands.New;
 import com.spaceman.word.commands.Print;
 
 public class Main extends JavaPlugin {
 
 	public void onEnable() {
+		
+//		Fonts normalFont = new Fonts(this, "normal.yml");
+//		normalFont.saveDefaultConfig();
 
 		getCommand("print").setExecutor(new Print(this));
 		getCommand("back").setExecutor(new Back(this));
@@ -26,6 +30,7 @@ public class Main extends JavaPlugin {
 		getCommand("new").setExecutor(new New(this));
 		getCommand("delete").setExecutor(new Delete(this));
 		getCommand("cls").setExecutor(new Cls(this));
+		getCommand("font").setExecutor(new Font(this));
 
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			@SuppressWarnings("deprecation")
@@ -55,14 +60,14 @@ public class Main extends JavaPlugin {
 										.getBlockAt(new Location(l.getWorld(), xx, yy, zz + 1));
 								if (block1.getType().equals(getConfig().getItemStack("word.paper").getType()) || block1
 										.getType().equals(getConfig().getItemStack("word.material").getType())) {
-									if (block.getType() == m) {
-										block.setType(getConfig().getItemStack("word.paper").getType());
+									if (block.getType() == m && block.getTypeId() == m.getId()) {
+										ItemStack is = getConfig().getItemStack("word.paper");
+										block.setTypeIdAndData(is.getTypeId(), is.getData().getData(), true);
 										block.setData((byte) getConfig().getInt("word.block.damage"));
 									} else {
-										block.setType(m);
+										block.setTypeIdAndData(m.getId(), item.getData().getData(), true);
 									}
 								}
-
 							}
 						}
 					}

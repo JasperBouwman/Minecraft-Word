@@ -21,6 +21,10 @@ public class Enter implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 
+		if (!(sender instanceof Player)) {
+			sender.sendMessage("must be player to use this");
+		}
+
 		Player player = (Player) sender;
 		if (p.getConfig().contains("word.offset")) {
 			CursorRemove CR = new CursorRemove(p);
@@ -40,6 +44,8 @@ public class Enter implements CommandExecutor {
 			} else {
 				player.sendMessage("end of file");
 			}
+		} else {
+			player.sendMessage("no document set");
 		}
 		return false;
 	}

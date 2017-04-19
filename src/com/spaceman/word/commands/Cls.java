@@ -21,9 +21,14 @@ public class Cls implements CommandExecutor {
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+		
+		if (!(sender instanceof Player)) {
+			sender.sendMessage("must be a player to use this");
+			return false;
+		}
 
+		Player player = (Player) sender;
 		if (p.getConfig().contains("word.offset")) {
-			Player player = (Player) sender;
 
 			player.sendMessage("cleared the file");
 
@@ -50,6 +55,9 @@ public class Cls implements CommandExecutor {
 			}
 			p.getConfig().set("word.offset", L1);
 			p.saveConfig();
+
+		} else {
+			player.sendMessage("no document set");
 		}
 		return false;
 	}

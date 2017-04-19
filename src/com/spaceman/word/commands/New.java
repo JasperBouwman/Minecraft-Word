@@ -79,6 +79,7 @@ public class New implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 
 		if (!(sender instanceof Player)) {
+			sender.sendMessage("must be player to use this");
 			return false;
 		}
 		Player player = (Player) sender;
@@ -94,6 +95,8 @@ public class New implements CommandExecutor {
 			p.getConfig().set("word.material", new ItemStack(Material.COAL_BLOCK));
 			p.getConfig().set("word.paper", new ItemStack(Material.QUARTZ_BLOCK));
 			p.getConfig().set("word.block.damage", 0);
+			p.getConfig().set("word.end", "false");
+			p.getConfig().set("word.font", "normal");
 			p.saveConfig();
 		} else if (args.length == 1) {
 

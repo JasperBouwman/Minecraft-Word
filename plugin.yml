@@ -18,3 +18,5 @@ commands:
     description: removes the file
   cls:
     description: cleared the file
+  font:
+    description: all about the font

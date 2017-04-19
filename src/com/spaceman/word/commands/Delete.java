@@ -21,6 +21,12 @@ public class Delete implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+
+		if (!(sender instanceof Player)) {
+			sender.sendMessage("must be a player to use this");
+			return false;
+		}
+
 		Player player = (Player) sender;
 
 		if (p.getConfig().contains("word.location")) {
